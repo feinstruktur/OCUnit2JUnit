@@ -113,7 +113,7 @@ class ReportParser
     unless @ended_current_test_suite
       current_file = File.open("#{TEST_REPORTS_FOLDER}/TEST-#{test_name}.xml", 'w')
       host_name = string_to_xml Socket.gethostname
-      test_name = string_to_xml test_name
+      test_name = string_to_xml('UnitTest.' + test_name)
       test_duration = (end_time - @cur_start_time).to_s
       total_tests = @total_failed_test_cases + @total_passed_test_cases
       suite_info = '<testsuite errors="0" failures="'+@total_failed_test_cases.to_s+'" hostname="'+host_name+'" name="'+test_name+'" tests="'+total_tests.to_s+'" time="'+test_duration.to_s+'" timestamp="'+end_time.to_s+'">'
